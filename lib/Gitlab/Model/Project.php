@@ -331,11 +331,11 @@ class Project extends AbstractModel
         return $mr->show();
     }
 
-    public function createMergeRequest($source, $target, $title, $assignee = null, $description = null)
+    public function createMergeRequest($source, $target, $title, $assignee = null, $description = null, array $data = array())
     {
-        $data = $this->api('mr')->create($this->id, $source, $target, $title, $assignee, null, $description);
+        $newData = $this->api('mr')->create($this->id, $source, $target, $title, $assignee, null, $description, $data);
 
-        return MergeRequest::fromArray($this->getClient(), $this, $data);
+        return MergeRequest::fromArray($this->getClient(), $this, $newData);
     }
 
     public function updateMergeRequest($id, array $params)

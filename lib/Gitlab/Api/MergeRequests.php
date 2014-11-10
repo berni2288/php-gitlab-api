@@ -34,20 +34,23 @@ class MergeRequests extends AbstractApi
         return $this->get('projects/'.urlencode($project_id).'/merge_request/'.urlencode($mr_id));
     }
 
-    public function create($project_id, $source, $target, $title, $assignee = null, $target_project_id = null, $description = null)
+    public function create($project_id, $source, $target, $title, $assignee = null, $target_project_id = null,
+        $description = null, array $data = array())
     {
         if ($target_project_id && ! is_numeric($target_project_id)) {
             throw new \InvalidArgumentException('target_project_id should be numeric, the project name is not allowed');
         }
 
-        return $this->post('projects/'.urlencode($project_id).'/merge_requests', array(
+        $data = array_merge(array(
             'source_branch' => $source,
             'target_branch' => $target,
             'title' => $title,
             'assignee_id' => $assignee,
             'target_project_id' => $target_project_id,
             'description' => $description
-        ));
+        ), $data);
+
+        return $this->post('projects/'.urlencode($project_id).'/merge_requests', $data);
     }
 
     public function update($project_id, $mr_id, array $params)

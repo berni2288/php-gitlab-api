@@ -13,6 +13,7 @@ class MergeRequest extends AbstractModel
         'source_branch',
         'project_id',
         'title',
+        'description'
         'closed',
         'merged',
         'author',
@@ -23,7 +24,8 @@ class MergeRequest extends AbstractModel
         'target_project_id',
         'upvotes',
         'downvotes',
-        'labels'
+        'labels',
+        'milestone_id',
     );
 
     public static function fromArray(Client $client, Project $project, array $data)

@@ -13,7 +13,7 @@ class MergeRequest extends AbstractModel
         'source_branch',
         'project_id',
         'title',
-        'description'
+        'description',
         'closed',
         'merged',
         'author',

@@ -26,6 +26,7 @@ class MergeRequest extends AbstractModel
         'downvotes',
         'labels',
         'milestone_id',
+        'should_remove_source_branch'
     );
 
     public static function fromArray(Client $client, Project $project, array $data)
